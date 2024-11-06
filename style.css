@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:gilroy;
+    font-family:wow;
 }
 html,
 body {
@@ -23,6 +23,84 @@ body {
     width: 100%;
 }
 
-h1{
-    font-family: wowb;
+nav{
+    background-color: #fdfaf5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    position: fixed;
+    padding: 15px 30px;
+    border-radius: 50px;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+nav .part2{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+nav a{
+    font-family: wow;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+color: #111;
+}
+nav button{
+    padding: 13px 20px;
+    border: none;
+    background-color: #70a2e1;
+    font-family: wow;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50px;
+}
+
+#page1{
+    height: 100vh;
+    width: 100%;
+    background-color: #fdfaf5;
+    padding: 2% 16%;
+    padding-top: 10%;
+
+}
+#page2{
+    height: 100vh;
+    width: 100%;
+    background-color: #222;
+}
+#page3{
+    height: 100vh;
+    width: 100%;
+    background-color: #333;
+}
+
+#coding{
+    height: 70%;
+    background-color: royalblue;
+}
+#page1Bottom{
+    display: flex;
+    align-items: center;
+    height: 20%;
+    margin-top: 3vw;
+    justify-content: space-between;
+}
+#page1Bottom div{
+    width: 50%;
+}
+#page1Bottom h1{
+    font-size: 6.5vw;
+    color: #333;
+}
+#page1Bottom div h3{
+    font-size: 1.2vw;
+    margin-bottom: 0.5vw;
+}
+#page1Bottom div p{
+    font-size: 0.8vw;
+    opacity: 0.6;
+    
 }
