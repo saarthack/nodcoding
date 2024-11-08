@@ -15,3 +15,18 @@ function navAnimation(){
 }
 
 navAnimation()
+
+
+var cFlower = document.querySelector("#letter-c .flower")
+
+var movingSpeed = 0
+
+cFlower.addEventListener("mousemove",function(dets){
+
+    movingSpeed = dets.movementX/10
+    gsap.to(cFlower,{
+        transform :`translateX(${movingSpeed}%) rotate(${movingSpeed}deg)`,
+        // duration:1
+    })
+    console.log(movingSpeed);
+})

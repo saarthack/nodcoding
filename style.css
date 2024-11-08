@@ -77,15 +77,11 @@ nav button{
     background-color: #333;
 }
 
-#coding{
-    height: 70%;
-    background-color: royalblue;
-}
 #page1Bottom{
     display: flex;
     align-items: center;
-    height: 20%;
-    margin-top: 3vw;
+    height: 25%;
+    margin-top: 0vw;
     justify-content: space-between;
 }
 #page1Bottom div{
@@ -103,4 +99,39 @@ nav button{
     font-size: 0.8vw;
     opacity: 0.6;
     
+}
+
+
+#coding{
+    height: 75%;
+    background-color: rgb(230, 233, 243);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    overflow: hidden;
+}
+
+#letter-c{
+
+    background-color: royalblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flower{
+    background-color: red;
+    transform-origin: 50% 90%;
+}
+
+.stem svg{
+    /* overflow: hidden; */
+    margin-top: -10%;
+    position: relative;
+}
+.js-stem-path{
+    margin-top: 10px;
+    stroke: black;
+    fill: none;
+    stroke-width: 3.5px;
 }
