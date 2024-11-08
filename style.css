@@ -108,26 +108,36 @@ nav button{
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    gap: 10px;
-    overflow: hidden;
+    gap: -50px;
+    
 }
 
-#letter-c{
-
-    background-color: royalblue;
+.letter{
+    margin-bottom: -100px;
+    /* background-color: royalblue; */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+#letter-n .flower{
+    margin-bottom: -120px;
+    
+}
 .flower{
-    background-color: red;
+    /* background-color: red; */
     transform-origin: 50% 90%;
 }
-
+.stem{
+    /* background-color: red; */
+    overflow: hidden;
+    pad: 1px;
+}
 .stem svg{
     /* overflow: hidden; */
     margin-top: -10%;
     position: relative;
+    margin-top: 10px;
+    
 }
 .js-stem-path{
     margin-top: 10px;
