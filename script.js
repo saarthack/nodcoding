@@ -14,47 +14,70 @@ function navAnimation() {
     })
 }
 
-navAnimation()
+// navAnimation()
+
+function codingAnimation() {
+
+    var letters = document.querySelectorAll(".letter")
 
 
-var cFlower = document.querySelector("#letter-c .flower")
+    letters.forEach(function (letter) {
 
-var movingSpeed = 0
+        let movingSpeed = 0
+        let stemSpeed = 90
 
-cFlower.addEventListener("mousemove", function (dets) {
+        let currentFlower = letter.childNodes[1]
+        let currentStem = letter.childNodes[3]
 
-    movingSpeed = dets.movementX / 10
-    gsap.to(cFlower, {
-        transform: `translateX(${movingSpeed}%) rotate(${movingSpeed}deg)`,
-        // duration:1
+
+        let currentStemPath = letter.childNodes[3].childNodes[1].childNodes[1].getAttribute('d')
+
+        currentFlower.addEventListener("mousemove", function (dets) {
+
+            movingSpeed = dets.movementX / 4
+
+            stemSpeed = dets.movementX + 90
+
+            currentStemPath = `M 98.5 650.4 Q 98.5 271 ${stemSpeed} 0.017043337314812446 m -4.914035618599561 -5 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0`
+
+            gsap.to(currentFlower, {
+                transform: `translateX(${movingSpeed}%) rotate(${movingSpeed}deg)`,
+                // duration:1
+            })
+            gsap.to(currentStem.childNodes[1].childNodes[1], {
+                attr: { d: currentStemPath }
+            })
+
+        })
+
     })
-})
 
-var valueA = 90
-let targetUp = 130; // Upper limit
-let targetDown = 70; // Lower limit
-let direction = 1;
 
-var stemPath = `M 98.5 650.4 Q 98.5 271 102.79821907002196 0.017043337314812446 m -4.914035618599561 -5 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0`
+    var valueA = 90
+    let targetUp = 120;
+    let targetDown = 80;
+    let direction = 1;
 
-setInterval(function () {
+    var stemPath = `M 98.5 650.4 Q 98.5 271 102.79821907002196 0.017043337314812446 m -4.914035618599561 -5 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0`
 
-    stemPath = `M 98.5 650.4 Q 98.5 271 ${valueA} 0.017043337314812446 m -4.914035618599561 -5 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0`
-    valueA += direction;
+    setInterval(function () {
 
-    if (valueA >= targetUp) {
-        direction = -1; // Start decreasing when the upper limit is reached
-        
-    } else if (valueA <= targetDown) {
-        direction = 1; // Start increasing when the lower limit is reached
-    }
+        stemPath = `M 98.5 650.4 Q 98.5 271 ${valueA} 0.017043337314812446 m -4.914035618599561 -5 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0`
+        valueA += direction;
 
-    console.log(valueA); // Output the current value
+        if (valueA >= targetUp) {
+            direction = -1; // Start decreasing when the upper limit is reached
+        } else if (valueA <= targetDown) {
+            direction = 1; // Start increasing when the lower limit is reached
+        }
+        gsap.to('.stem path', {
+            attr: { d: stemPath }
+        })
+        gsap.to('.flower', {
+            transform: `translateX(${(valueA - 90) / 4}%) rotate(${(valueA - 90) / 4}deg)`,
+        })
+    }, 100)
 
-    gsap.to('.stem path',{
-        attr:{d:stemPath}
-    })
-    gsap.to('.flower',{
-        transform: `translateX(${(valueA - 90)/4}%) rotate(${(valueA - 90)/4}deg)`,
-    })
-}, 50)
+}
+
+// codingAnimation()
