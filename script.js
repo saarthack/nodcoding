@@ -14,7 +14,7 @@ function navAnimation() {
     })
 }
 
-navAnimation()
+
 
 function codingAnimation() {
 
@@ -80,7 +80,6 @@ function codingAnimation() {
 
 }
 
-codingAnimation()
 
 function page2Animation() {
     var eyeball = document.querySelector('.eyeball')
@@ -132,4 +131,42 @@ function page2Animation() {
     })
 }
 
-page2Animation()
+// navAnimation()
+// codingAnimation()
+// page2Animation()
+
+var num = 0
+
+var int
+
+function userRating() {
+    int = setInterval(function () {
+        if (num < 49) {
+            num += 1
+            document.querySelector('#user-review1 .rating h2 span').innerHTML = num / 10
+            document.querySelector('#user-review3 .rating h2 span').innerHTML = num / 10
+            if (num < 49) {
+                document.querySelector('#user-review2 .rating h2 span').innerHTML = num / 10
+            }
+        } else {
+            clearInterval(int)
+        }
+    }, 25)
+}
+
+gsap.from('.user-review', {
+    // width:'20%',
+    transform: 'translateX(-40%)',
+    stagger: {
+        amount: 0.5
+    },
+    onStart:function(){
+        userRating()
+    },
+    duration: 0.7,
+    scrollTrigger:{
+        trigger:'.all-reviews',
+        start:'top 60%',
+        markers:true
+    }
+})
