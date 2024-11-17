@@ -1,3 +1,21 @@
+function lenis() {
+    // Initialize Lenis
+    const lenis = new Lenis();
+
+    // Listen for the scroll event and log the event data
+    lenis.on('scroll', (e) => {
+        console.log(e);
+    });
+
+    // Use requestAnimationFrame to continuously update the scroll
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+}
+
 function navAnimation() {
     document.querySelector("body").addEventListener('wheel', function (dets) {
         if (dets.deltaY > 0) {
@@ -13,8 +31,6 @@ function navAnimation() {
         }
     })
 }
-
-
 
 function codingAnimation() {
 
@@ -80,7 +96,6 @@ function codingAnimation() {
 
 }
 
-
 function page2Animation() {
     var eyeball = document.querySelector('.eyeball')
 
@@ -131,42 +146,131 @@ function page2Animation() {
     })
 }
 
-// navAnimation()
-// codingAnimation()
-// page2Animation()
+function page3Page4Animation() {
 
-var num = 0
+    var num = 0
 
-var int
+    var int
 
-function userRating() {
-    int = setInterval(function () {
-        if (num < 49) {
-            num += 1
-            document.querySelector('#user-review1 .rating h2 span').innerHTML = num / 10
-            document.querySelector('#user-review3 .rating h2 span').innerHTML = num / 10
+    function userRating() {
+        int = setInterval(function () {
             if (num < 49) {
-                document.querySelector('#user-review2 .rating h2 span').innerHTML = num / 10
+                num += 1
+                document.querySelector('#user-review1 .rating h2 span').innerHTML = num / 10
+                document.querySelector('#user-review3 .rating h2 span').innerHTML = num / 10
+                if (num < 49) {
+                    document.querySelector('#user-review2 .rating h2 span').innerHTML = num / 10
+                }
+            } else {
+                clearInterval(int)
             }
-        } else {
-            clearInterval(int)
+        }, 25)
+    }
+
+    gsap.from('.user-review', {
+        // width:'20%',
+        transform: 'translateX(-40%)',
+        stagger: {
+            amount: 0.5
+        },
+        onStart: function () {
+            userRating()
+        },
+        duration: 0.7,
+        scrollTrigger: {
+            trigger: '.all-reviews',
+            start: 'top 60%',
         }
-    }, 25)
+    })
+
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 2,
+        spaceBetween: 450,
+        centeredSlides: true,
+        // freeMode: true,
+    });
 }
 
-gsap.from('.user-review', {
-    // width:'20%',
-    transform: 'translateX(-40%)',
-    stagger: {
-        amount: 0.5
-    },
-    onStart:function(){
-        userRating()
-    },
-    duration: 0.7,
-    scrollTrigger:{
-        trigger:'.all-reviews',
-        start:'top 60%',
-        markers:true
+function page5Animation() {
+
+
+    var bootcamp = [
+        {
+            id: '1',
+            selected: true,
+            image: 'https://nodcoding.com/wp-content/uploads/2024/07/home-experience-720x778.jpg',
+            name: 'The Stockholm Experience',
+            desc: 'Our Stockholm campus is more than a place to learn; it’s a community. Here’s why it’s the perfect launchpad for your tech career.'
+        },
+        {
+            id: '2',
+            selected: false,
+            image: 'https://nodcoding.com/wp-content/uploads/2024/07/home-accommodation-720x778.jpg',
+            name: 'Get Help Finding Accommodation',
+            desc: 'Our Stockholm campus is more than a place to learn; it’s a community. Here’s why it’s the perfect launchpad for your tech career.'
+        },
+        {
+            id: '3',
+            selected: false,
+            image: 'https://nodcoding.com/wp-content/uploads/2024/07/home-islands-720x778.jpg',
+            name: 'The City of Islands',
+            desc: 'Our Stockholm campus is more than a place to learn; it’s a community. Here’s why it’s the perfect launchpad for your tech career.'
+        },
+        {
+            id: '4',
+            selected: false,
+            image: 'https://nodcoding.com/wp-content/uploads/2024/07/home-more-ikea-720x778.jpg',
+            name: 'More than IKEA',
+            desc: 'Our Stockholm campus is more than a place to learn; it’s a community. Here’s why it’s the perfect launchpad for your tech career.'
+        },
+        {
+            id: '5',
+            selected: false,
+            image: 'https://nodcoding.com/wp-content/uploads/2024/07/home-foodies-720x778.jpg',
+            name: 'A Haven for Foodies',
+            desc: 'Our Stockholm campus is more than a place to learn; it’s a community. Here’s why it’s the perfect launchpad for your tech career.'
+        },
+    ]
+
+    function page5ChangePage() {
+
+        var clutter = ''
+        var btnClutter = ''
+        bootcamp.forEach(function (elem) {
+            if (elem.selected) {
+                clutter += `<div class="page5-image">
+            <img src=${elem.image} alt="">
+        </div>
+        <div class="page5-details">
+            <div class="page5-details1">
+                <h2>${elem.name}</h2>
+                <p>${elem.desc}</p>
+            </div>
+        </div>`
+            }
+
+            btnClutter += `<h5 id=${elem.id} class=${elem.selected}>${elem.id}</h5>`
+        })
+
+        document.querySelector('#page5-container').innerHTML = clutter
+        document.querySelector('.page5-buttons').innerHTML = btnClutter
     }
-})
+
+    page5ChangePage()
+
+    document.querySelector('.page5-buttons').addEventListener('click', function (dets) {
+        bootcamp.forEach(function (elem) {
+            elem.selected = false
+        })
+        bootcamp[dets.target.id - 1].selected = true
+
+        page5ChangePage()
+    })
+}
+
+lenis()
+navAnimation()
+codingAnimation()
+page2Animation()
+page3Page4Animation()
+page5Animation()
